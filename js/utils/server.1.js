@@ -1,6 +1,6 @@
 
 function TokenManager() {
-
+    this.url = opts.url;
 }
 
 TokenManager.prototype.serToken = function (token) {
