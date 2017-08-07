@@ -1,0 +1,13 @@
+
+.xfs-circle-progress{
+    text-align: center;
+}
+.prg-cont{
+    position: relative;
+}
+.rad-con{
+    position: absolute;
+    text-align: center;
+    margin-top: 40px;
+    width: 100%;
+}

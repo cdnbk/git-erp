@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    #parse("pages/common_pages/pages_header.html")
+</head>
+<body>
+    <div class="xfd-wrapper">
+        <div>
+            <button type="button" class="xfd-btn xfd-btn-default" id="tk1">弹框1</button>
+            <button type="button" class="xfd-btn xfd-btn-default" id="tk2">弹框2</button>
+            <button type="button" class="xfd-btn xfd-btn-default" id="tk3">弹框3</button>
+            <button type="button" class="xfd-btn xfd-btn-default" id="tk4">弹框4</button>
+        </div>
+        <div>
+            <button type="button" class="xfd-btn xfd-btn-default" id="ts1">提示1</button>
+            <button type="button" class="xfd-btn xfd-btn-default" id="ts2">提示2</button>
+            <button type="button" class="xfd-btn xfd-btn-default" id="ts3">提示3</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        require(['controller/alerts/Index'], function (index) {
+
+        });
+    </script>
+    <div id="myText" style="display: none;">
+        <p style="color:red">红色标题</p>
+        <div>我是DOM 弹出框元素</div>
+    </div>
+</body>
+</html>

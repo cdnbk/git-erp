@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="../../js/lib/echarts.common.min.js"></script>
+    #parse("pages/common_pages/pages_header.html")
+    <link rel="stylesheet" href="/static/styles/module/datacenter.css" />
+</head>
+<body>
+    <div class="xfd-wrapper">
+        <div>
+            <div class="xfd-tabs">
+                <ul class="xfd-tabs-menu">
+                    <li class="active"><a href="javascript:void(0);">销售数据</a></li>
+                    <li><a href="datacenter-park.html">车场数据</a></li>
+                </ul>
+                <div class="xfd-datacenter-quick">
+                    <button type="button" class="xfd-btn xfd-btn-primary xfd-btn-outline">快速申请预付款</button>
+                </div>
+            </div><div class="xfd-tabs-content">
+                <div class="xfd-datacenter-form">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="xfd-dropdown">
+                                <button type="button" class="xfd-btn xfd-btn-white xfd-btn-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">全部城市</button><span><i class="xfd-down"></i></span>
+                                <ul class="xfd-dropdown-menu">
+                                    <li><a href="javascript:;">选项一</a></li>
+                                    <li><a href="javascript:;">选项二</a></li>
+                                    <li><a href="javascript:;">选项三</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="xfd-dropdown">
+                                <button type="button" class="xfd-btn xfd-btn-white xfd-btn-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">所有销售员</button><span><i class="xfd-down"></i></span>
+                                <ul class="xfd-dropdown-menu">
+                                    <li><a href="javascript:;">选项一</a></li>
+                                    <li><a href="javascript:;">选项二</a></li>
+                                    <li><a href="javascript:;">选项三</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="xfd-input-daterange xfd-input-group" id="datepicker">
+                                <div class="input-group date" id="datetimepicker1">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                                <span class="xfd-input-group-addon">到</span>
+                                <div class="input-group date" id="datetimepicker3">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 xfd-text-right">
+                            <button type="button" class="xfd-btn xfd-btn-primary xfd-btn-md">筛选</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="xfd-datacenter-selectchart">
+                    <ul>
+                        <li class="active">
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <span>新增用户</span>
+                                    <strong>2,000,000</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <span>新增订单数量</span>
+                                    <strong>2,000,000</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <span>使用停车券数量</span>
+                                    <strong>2,000,000</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <span>新增商户数量</span>
+                                    <strong>2,000,000</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div>
+                                    <span>新增停车场数量</span>
+                                    <strong>2,000,000</strong>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="curvechart" class="curvechart">
+
+                </div>
+                <div class="xfd-datacenter-operation">
+                    <ul class="nav nav-tabs xfd-datacenter-select">
+                        <li>数据明细</li>
+                        <li><a href="javascript:void(0);">自定义数据字段</a></li>
+                    </ul>
+                    <div class="xfd-datacenter-selectbox" style="display:none;">
+                        <div class="xfd-checkbox-custom xfd-checkbox-primary">
+                            <input type="checkbox" checked="">
+                            <label>新增用户</label>
+                        </div>
+                        <div class="xfd-checkbox-custom xfd-checkbox-primary">
+                            <input type="checkbox" checked="">
+                            <label>新增订单量</label>
+                        </div>
+                        <div class="xfd-checkbox-custom xfd-checkbox-primary">
+                            <input type="checkbox" checked="">
+                            <label>使用停车券数量</label>
+                        </div>
+                        <div class="xfd-checkbox-custom xfd-checkbox-primary">
+                            <input type="checkbox" checked="">
+                            <label>商户券使用量</label>
+                        </div>
+                        <div class="xfd-checkbox-custom xfd-checkbox-primary">
+                            <input type="checkbox" checked="">
+                            <label>平台券使用量</label>
+                        </div>
+                        <div class="xfd-checkbox-custom xfd-checkbox-primary">
+                            <input type="checkbox" checked="">
+                            <label>新增商户数量</label>
+                        </div>
+                        <div class="xfd-checkbox-custom xfd-checkbox-primary">
+                            <input type="checkbox" checked="">
+                            <label>新增停车场数量</label>
+                        </div>
+                    </div>
+                    <button type="button" class="xfd-btn-white xfd-btn-md export">导出</button>
+                    <button type="button" class="xfd-btn-white xfd-btn-md print">打印</button>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel-body float-e-margins xfd-datacenter-table">
+                            <div class="" style="position: relative; border:1px solid #E4E9ED;">
+                                <div class="xfd-table-responsive xfd-table-head" data-scrollLeft="on">
+                                    <table class="xfd-table xfd-width-auto">
+                                        <thead>
+                                            <tr>
+                                                <th>城市</th>
+                                                <th>&nbsp;&nbsp;停车场</th>
+                                                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增用户</th>
+                                                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增订单数量</th>
+                                                <th>停车券使用数量</th>
+                                                <th>商户券使用量</th>
+                                                <th>平台券使用量</th>
+                                                <th>新增商户数量</th>
+                                                <th>新增停车场数量</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="xfd-table-responsive" data-scrollLeft="on">
+                                    <table class="xfd-table xfd-width-auto">
+                                        <tbody>
+                                            <tr>
+                                                <td>北京</td>
+                                                <td>销售专员</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                            </tr>
+                                            <tr>
+                                                <td>北京</td>
+                                                <td>销售专员</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                            </tr>
+                                            <tr>
+                                                <td>北京</td>
+                                                <td>销售专员</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                            </tr>
+                                            <tr>
+                                                <td>北京</td>
+                                                <td>销售专员</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                            </tr>
+                                            <tr>
+                                                <td>北京</td>
+                                                <td>销售专员</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                            </tr>
+                                            <tr>
+                                                <td>北京</td>
+                                                <td>销售专员</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                            </tr>
+                                            <tr>
+                                                <td>北京</td>
+                                                <td>销售专员</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                            </tr>
+                                            <tr>
+                                                <td>北京</td>
+                                                <td>销售专员</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                                <td>34,543,656</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body float-e-margins">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="dataTables_paginate">
+                                <ul class="xfd-pagination xfd-pagination-sm">
+                                    <li class="xfd-paginate_button previous disabled"><a href="#">上一页</a></li>
+                                    <li class="xfd-paginate_button active"><a href="#">1</a></li>
+                                    <li class="xfd-paginate_button ">
+                                        <a href="#">2</a>
+                                    </li>
+                                    <li class="xfd-paginate_button ">
+                                        <a href="#">3</a>
+                                    </li>
+                                    <li class="xfd-paginate_button ">
+                                        <a href="#">4</a>
+                                    </li>
+                                    <li class="xfd-paginate_button ">
+                                        <a href="#">5</a>
+                                    </li>
+                                    <li class="xfd-paginate_button ">
+                                        <a href="#">6</a>
+                                    </li>
+                                    <li class="xfd-paginate_button next"><a href="#">下一页</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.xfd-datacenter-select li:nth-child(2)').click(function (e) {
+            if ($('.xfd-datacenter-selectbox').css('display') == 'none') {
+                $('.xfd-datacenter-selectbox').show();
+                $('.xfd-datacenter-select').addClass('active');
+            } else {
+                $('.xfd-datacenter-selectbox').hide();
+                $('.xfd-datacenter-select').removeClass('active');
+            }
+        });
+        $(function () {
+            var myChart = echarts.init(document.getElementById('curvechart'));
+            var colors = ['#53C9D7'];
+            var option = [
+                {
+                    //grid: {
+                    //    left: 0, right: 0
+                    //},
+                    color: colors,
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross'
+                        }
+                    },
+                    legend: {
+                        data: ['新增用户']
+                    },
+                    xAxis: {
+                        min: 1200,
+                    },
+                    yAxis: {
+                        show: false,
+                        data: ["2016-07-01", "2016-08-01", "2016-09-01", "2016-10-01", "2016-11-01", "2016-12-01", "2017-01-01", "2017-02-01", "2017-03-01", "2017-04-01", "2017-05-01", "2017-06-01"]
+                    },
+                    dataZoom: [
+                        {
+                            id: 'dataZoomX',
+                            type: 'slider',
+                            yAxisIndex: [0],
+                            filterMode: 'filter',
+                            start: 50,
+                            end: 100
+                        }
+                    ],
+                    series: [{
+                        name: '新增用户',
+                        type: 'line',
+                        smooth: true,
+                        data: [1700, 2100, 2000, 2500, 1700, 1600, 1700, 2100, 2000, 2500, 1700, 1600]
+                    }]
+                }
+            ]
+                myChart.setOption(option[0]);
+
+            $('.xfd-datacenter-selectchart ul').find('li').each(function (i, j) {
+                $(j).click(function (e) {
+                    $(j).addClass('active').siblings().removeClass('active');
+                    myChart.setOption(option[i]);
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        require(['controller/bootstrap-datetimejs/Index'], function (index) {
+        });
+    </script>
+</body>
+</html>
