@@ -23,7 +23,8 @@ requirejs.config({
         'bootstrap-datetimepicker':'lib/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker',
         'WdatePicker':'lib/My97DatePicker/WdatePicker',
         'zh-cn': 'lib/moment/locale/zh-cn',
-        'linkage':'lib/bootstrap-select/js/bootstrap-select'
+        'linkage': 'lib/bootstrap-select/js/bootstrap-select',
+        'defaults-zh_CN':'lib/bootstrap-select/dist/js/i18n/defaults-zh_CN'
     },
     shim: {
         'WebUploader':{

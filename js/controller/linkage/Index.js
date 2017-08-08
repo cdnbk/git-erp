@@ -1,4 +1,4 @@
-﻿define(['linkage'],
+﻿define([],
     function () {
         $('.selectpicker').selectpicker();
     });
