@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/7/13.
+ * Created by Administrator on 2017/6/1.
  */
 define(['moment','daterangepicker'],
     function () {
