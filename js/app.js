@@ -33,6 +33,12 @@ requirejs.config({
         },
         'WdatePicker':{
             exports: 'WdatePicker'
+        },
+        'linkage': {
+            deps: ['jquery']
+        },
+        'defaults-zh_CN': {
+            deps: ['linkage']
         }
     }
 });

@@ -6,16 +6,10 @@
     <link href="../js/lib/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
 </head>
 <body>
-    <select class="selectpicker" multiple data-live-search="true" data-actions-box="true" title="请选择城市">
-        <option>提莫</option>
-        <option>伊泽瑞尔</option>
-        <option>盖伦</option>
-        <option>嘉文</option>
-        <option>赵信</option>
-        <option>薇恩</option>
-        <option>维克托</option>
+    <select id="citySelect" data-nms="true" data-live-search="true" data-actions-box="true" data-style="btn-primary" title="请选择城市" data-nms-src="city.json?filter=$values" data-nms-target="#areaSelect">
+        <option>请选择城市</option>
     </select>
-    <select class="selectpicker show-tick" show-menu-arrow>
+    <select id="areaSelect" data-nms="true" data-live-search="true" data-actions-box="true" data-style="btn-primary" title="请选择城市" data-nms-src="area.json?filter=$values">
         <option>Mustard</option>
         <option>Ketchup</option>
         <option data-icon="glyphicon-heart">Ketchup</option>
@@ -23,7 +17,8 @@
         <option>Relish</option>
     </select>
     <script type="text/javascript">
-        require(['linkage','defaults-zh_CN','controller/linkage/Index'], function (index) {
+        require(['controller/linkage/Index'], function (index) {
+
         });
     </script>
 </body>
