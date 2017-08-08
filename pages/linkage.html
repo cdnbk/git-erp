@@ -6,7 +6,7 @@
     <link href="../js/lib/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
 </head>
 <body>
-    <select class="selectpicker" multiple data-live-search="true" data-actions-box="true">
+    <select class="selectpicker" multiple data-live-search="true" data-actions-box="true" title="请选择城市">
         <option>提莫</option>
         <option>伊泽瑞尔</option>
         <option>盖伦</option>
@@ -15,19 +15,16 @@
         <option>薇恩</option>
         <option>维克托</option>
     </select>
-    <select class="selectpicker" multiple title="Choose one of the following...">
-        <optgroup label="Picnic">
-            <option>Mustard</option>
-            <option>Ketchup</option>
-            <option>Relish</option>
-        </optgroup>
-        <optgroup label="Camping">
-            <option>Tent</option>
-            <option>Flashlight</option>
-            <option>Toilet Paper</option>
-        </optgroup>
+    <select class="selectpicker show-tick" show-menu-arrow>
+        <option>Mustard</option>
+        <option>Ketchup</option>
+        <option data-icon="glyphicon-heart">Ketchup</option>
+        <option data-content="<span class='label label-success'>Relish</span>">Relish</option>
+        <option>Relish</option>
     </select>
+    <script>
 
+    </script>
     <script type="text/javascript">
         require(['controller/linkage/Index'], function (index) {
         });
