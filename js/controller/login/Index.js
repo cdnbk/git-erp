@@ -1,9 +1,13 @@
-/**
- * Created by apple on 2017/7/20.
- */
-/**
- * Created by apple on 2017/4/28.
- */
 require(['utils/app'], function () {
-    console.log('我是登录页')
+
+    $('#formData').submit(function () {
+        if ($.vaildform.init($(this), {all_err_show: true})) {
+            var userInfo = {
+                "account": $("#user-name").val(),
+                "password": $("#inputPassword3").val()
+            };
+            window.location.href = '/pages/index.html';
+        }
+        return false;
+    })
 });

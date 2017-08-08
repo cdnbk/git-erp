@@ -36,7 +36,7 @@
         this.dialog = $(tel.join('')).appendTo("body");
         types ? this.content(tips,tel_id,types) : null;
         this.EventButton(actions,types,tips);
-        if(self.parent.LayoutController){
+        if(self.parent.LayoutController&&self.frameElement && self.frameElement.tagName == "IFRAME"){
             self.parent.LayoutController.mockOpen();
         }
     }

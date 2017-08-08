@@ -26,14 +26,14 @@
 
     Layout.prototype.initMenuList = function (opts) {
         if (window.localStorage) {
-            if (typeof(window.localStorage.menuLists) === "undefined"){
+            if (typeof(window.localStorage.menuLists) === "undefined") {
                 return;
             }
             var menuData = JSON.parse(window.localStorage.menuLists);
             var menuNode = $(opts.menu_dom);
             var childClass = opts.menu_child.substr(1);
             //判断是否
-            if (menuData !== ""  && menuNode.length > 0) {
+            if (menuData !== "" && menuNode.length > 0) {
                 //原有菜单清空
                 menuNode.empty();
                 var domStr = [];
@@ -41,7 +41,7 @@
                     // 判断是否包含子菜单
                     if (item.subMunu.length > 0) {
                         domStr.push('<li>');
-                        domStr.push('<a href="javascript:;"><span class="nav-label">' + item.name + '</span><span class="fa arrow"></span></a>');
+                        domStr.push('<a href="javascript:;">' + item.name + '</a>');
                         domStr.push('<ul class="nav ' + childClass + '">');
                         $.each(item.subMunu, function (childIndex, childMenu) {
                             domStr.push('<li><a href="' + childMenu.url + '" data-menukey="' + childMenu.menuId + '">' + childMenu.name + '</a></li>');
@@ -49,7 +49,7 @@
                         domStr.push('</ul>');
                         domStr.push('</li>');
                     } else {
-                        domStr.push('<li><a href="' + item.url + '" data-menukey="' + item.menuId + '"><span class="nav-label">' + item.name + '</span><span class="fa arrow"></span></a></li>');
+                        domStr.push('<li><a href="' + item.url + '" data-menukey="' + item.menuId + '">' + item.name + '</a></li>');
                     }
                 });
                 menuNode.append(domStr.join(''));
@@ -75,6 +75,15 @@
             }
         })
     }
+    Layout.prototype.setBodySmall = function () {
+        if ($(window).width() < 769) {
+            $('body').addClass('page-small');
+        } else {
+            $('body').removeClass('page-small');
+            $('body').removeClass('show-sidebar');
+        }
+    }
+
 
     //菜单初始化
     Layout.prototype.menu = function (options) {
@@ -92,32 +101,39 @@
         this.action();
     }
 
+    /***
+     * 高亮子菜单样式
+     * @param key
+     */
+    Layout.prototype.activeMenuLi = function (that) {
+        var _ul = that.next('ul');
+        that.parent().siblings("li").removeClass('active').find('ul').removeClass('on').height(0);
+        var _index = that.parent('li').index();
+        that.parent().toggleClass('active');
+        if (_ul.hasClass('on')) {
+            _ul.height(0);
+            _ul.removeClass('on');
+        } else {
+            _ul.addClass('on');
+            _ul.height(this.height_arr[_index]);
+        }
+    }
+
     //菜单动画事件
     Layout.prototype.action = function () {
         var $this = this;
         if (this.menu_dom.find("li").has('ul').length <= 0) {
-            console.log('不触发');
             return;
         }
+
         //左侧一级菜单栏展开监听
         this.menu_dom.find("li").has('ul').children('a').on('click', function () {
-            //$('#side-menu>li').removeClass('active');
-            var _ul = $(this).next('ul');
-            $(this).parent().siblings("li").removeClass('active').find('ul').removeClass('on').height(0);
-            var _index = $(this).parent('li').index();
-            $(this).parent().toggleClass('active');
-            if (_ul.hasClass('on')) {
-                _ul.height(0);
-                _ul.removeClass('on');
-            } else {
-                _ul.addClass('on');
-                _ul.height($this.height_arr[_index]);
-            }
+            $this.activeMenuLi($(this));
         });
     }
 
-    //切换显示iframe 模板
 
+    //切换显示iframe 模板
     Layout.prototype.switchIframe = function (index) {
         $(".xfd-content").children().removeClass("on-show");
         $(".xfd-content").find(".xfd-iframe[name=iframe" + index + "]").addClass("on-show");
@@ -153,13 +169,15 @@
                 var _index = $(this).data('navkey');
                 _this.switchIframe(_index);
                 _this.activeLi(_index);
+                var activeLiTarget = $("#side-menu").find("li>a[data-menukey=" + _index + "]").parents("ul").prev('a');
+                _this.activeMenuLi(activeLiTarget);
             }
         })
         //删除功能
         $('#navPills').on('click', '.cross', function () {
             var parentLi = $(this).closest('li');
             if (parentLi.hasClass('active')) {
-                var pre =parentLi.prev();
+                var pre = parentLi.prev();
                 _this.activeLi(pre.data('navkey'));
                 _this.switchIframe(pre.data('navkey'));
             }
@@ -174,9 +192,11 @@
         })
     }
 
-    //高亮activeLi 按钮
     Layout.prototype.activeLi = function (key) {
         $("#navPills").find("li").removeClass("active");
+
+        $("#side-menu").find("li>ul>li").removeClass("child-active");
+        $("#side-menu").find("li>a[data-menukey=" + key + "]").parent().addClass("child-active");
         var currentLi = $("#navPills").find("li[name=nav" + key + "]").addClass("active");
         var currentLeft = currentLi.offset().left;
         var currentWith = currentLi.css('width');
@@ -186,11 +206,11 @@
         //判断左侧边界
         if (currentLeft < leftPos) {
             var diff = leftPos - currentLeft;
-            $(_this.opts.content_dom).stop().animate({left: '+=' + (diff) + 'px'},500);
+            $(_this.opts.content_dom).stop().animate({left: '+=' + (diff) + 'px'}, 500);
             //    判断右侧边界
         } else if (currentLeft + parseInt(currentWith, 10) > rightPos) {
             var diff = currentLeft + parseInt(currentWith, 10) - rightPos;
-            $(_this.opts.content_dom).stop().animate({left: '-=' + (diff) + 'px'},500);
+            $(_this.opts.content_dom).stop().animate({left: '-=' + (diff) + 'px'}, 500);
         }
     };
 
@@ -200,6 +220,12 @@
         $(".xfd-content").find("iframe[name=iframe" + key + "]").remove();
     }
 
+    /**
+     *
+     * @param key 菜单的key
+     * @param href 菜单的
+     * @param val
+     */
     Layout.prototype.iframeController = function (key, href, val) {
         var _this = this;
         var iframeArgument = {};
@@ -210,7 +236,7 @@
          * 添加iframe
          */
         if (_this.iframe_key.indexOf(key) == -1) {
-            console.log('进来')
+
             _this.iframe_key.push(key);
             _this.iframeTel(iframeArgument);
             _this.creationLi(key, val);
@@ -235,6 +261,18 @@
         var menu_dom = $(opts.menu_dom);
         //iframe控制
         menu_dom.find("li>a").on('click', function (e) {
+            /**
+             * 处理不含有子菜单
+             */
+            if($(this).next('ul').length<=0){
+                $('#side-menu').find('li.active').removeClass('active')
+                    .find('.nav-second-level.on').removeClass('on')
+                    .height(0).find('li')
+                    .removeClass('.child-active');
+            }else{
+                $('#side-menu').find('.child-active').removeClass('child-active');
+            }
+            //叶子节点
             if ($(this).data('menukey')) {
                 iframeArgument.name = $(this).data('menukey');
                 iframeArgument.src = $(this).attr('href');
@@ -242,13 +280,6 @@
             }
             e.preventDefault();
         })
-        /* menu_dom.find("li").has('ul').find('a[data-menukey]').on('click',function(e){
-         iframeArgument.name = $(this).data('menukey');
-         iframeArgument.src = $(this).attr('href');
-         _this.iframeController(iframeArgument.name,iframeArgument.src,$(this).html());
-         e.preventDefault();
-
-         })*/
     }
 
     //顶部切换 左移
@@ -346,11 +377,11 @@
         })
     };
 
-    Layout.prototype.mockOpen = function(){
-        $('body').append($('<div class="xfd-sweet-overlay sweet-overlay"></div>'));
+    Layout.prototype.mockOpen = function () {
+        $('body').append($('<div class="xfd-sweet-overlay top-sweet-overlay"></div>'));
     }
 
-    Layout.prototype.mockClose = function(){
+    Layout.prototype.mockClose = function () {
         $('.xfd-sweet-overlay').remove();
     }
     /**
@@ -377,6 +408,10 @@
             LayoutController.moveLeft(opts);
             LayoutController.moveRight(opts);
             LayoutController.initDropdown(opts);
+            LayoutController.setBodySmall();
+            $(window).bind("resize click", function () {
+                LayoutController.setBodySmall();
+            });
         }
     };
 })(jQuery ? jQuery : Zepto);

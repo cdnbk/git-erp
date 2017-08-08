@@ -6,6 +6,7 @@
 
 .xfd-datacenter-form {
     margin: 32px 16px;
+    padding-bottom: 16px;
 }
 
 .xfd-datacenter-operation {
@@ -146,4 +147,7 @@ ul.active > li > a {
 
 .form-control{
     height:30px;
+}
+.form-group select{
+    min-width: 180px;
 }

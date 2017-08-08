@@ -11,7 +11,7 @@
 body{
     background: #f2f5f8;
     font-family: PingFangSC-Regular,MicrosoftYaHei,HiraginoSansGB-W3;
-}
+    }
 .xfd-tabs{
     padding: 32px 16px 0;
     position: relative;
@@ -22,11 +22,18 @@ body{
     right: 16px;
 }
 .xfd-advance-form{
-    margin: 32px 16px;
+    margin: 16px 16px 32px;
 }
 .xfd-advance-form .xfd-input-group-addon{
     background-color: #ffffff;
     border: 0;
+}
+.xfd-advance-form .form-group{
+    margin-right: 16px;
+    margin-top: 16px;
+}
+.xfd-advance-form button{
+    margin-top: 16px;
 }
 .xfd-advance-operation{
     padding: 0 16px 16px;
@@ -202,7 +209,7 @@ body{
 }
 .xfd-block-title{
     width: 206px;
-    margin: 32px auto;
+    margin: 64px auto 32px;
     border-top: 2px solid #979797;
     position: relative;
 }
@@ -217,18 +224,16 @@ body{
     font-size: 12px;
     color: #57636F;
 }
-.xfd-park-form{
-    overflow: hidden;
+.form-row{
+    margin: 16px 32px 32px;
 }
-.xfd-park-form .xfd-input-group{
-    width: 100%;
-}
-.xfd-input-datetime .xfd-input-group-addon{
-    background-color: #ffffff;
-    border: 1px solid #ffffff;
+.form-row label{
     font-size: 12px;
-    width: 50px;
+    color: #8995A0;
+    font-weight: normal;
+    padding-left: 0;
 }
+
 .xfd-input-op{
     position: relative;
     padding-right: 64px;
@@ -324,6 +329,22 @@ body{
 .xfd-advance-details-content{
     background: #f2f5f8;
 }
+.xfd-upload{
+    width: 100%;
+    height: 180px;
+    border: 1px solid #D2D7DD;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 12px;
+    color: #57636F;
+}
+.xfd-upload .iconfont{
+    font-size: 67px;
+    color: #D2D7DD;
+}
+.xfd-upload .icon-shangchuan:before{
+    vertical-align: -24px;
+}
 .xfd-upload-con{
     width: 100%;
     height: 264px;
@@ -369,11 +390,11 @@ body{
     border-radius: 10px;
     background: #D8D8D8;
     position: absolute;
-    left: -3px;
+    left: -4px;
     top: -2px;
 }
 .xfd-details-line:first-child .xfd-details-dot{
-    left: -5px;
+    left: -6px;
 }
 .xfd-details-title{
     position: absolute;
@@ -387,6 +408,43 @@ body{
     overflow: hidden;
     padding-top: 40px;
 }
+.progress-row{
+    overflow: hidden;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.form-group select{
+    min-width: 180px;
+}
 
 
 
+.dialog-advance{
+    position: fixed;
+    top: 0;
+    left: 2000px;
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s ease 0s;
+}
+.dialog-advance.open{
+    left: 0;
+}
+.dialog-advance-mask{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 100;
+}
+.xfd-advance-details{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1111;
+    overflow-y: auto;
+}

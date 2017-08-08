@@ -1,6 +1,5 @@
 /**
  * Created by apple on 17/3/6.
- * by cdnbk
  */
 /**
  * Created by Administrator on 2016/1/5.
@@ -23,7 +22,8 @@ requirejs.config({
         'moment':'lib/moment/moment',
         'bootstrap-datetimepicker':'lib/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker',
         'WdatePicker':'lib/My97DatePicker/WdatePicker',
-        'zh-cn':'lib/moment/locale/zh-cn'
+        'zh-cn': 'lib/moment/locale/zh-cn',
+        'linkage':'lib/cxSelect/js/jquery.cxselect.min'
     },
     shim: {
         'WebUploader':{

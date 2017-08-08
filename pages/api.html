@@ -9,7 +9,7 @@
     <div class="xfd-wrapper">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="panel panel-danger">
+                    <div class="panel panel-default">
                         <div class="panel-heading hbuilt">
                             字体颜色、对齐
                         </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="panel panel-warning">
+                    <div class="panel panel-default">
                         <div class="panel-heading hbuilt">
                             字体大小
                         </div>
@@ -78,13 +78,13 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="panel panel-warning">
+                    <div class="panel panel-default">
                         <div class="panel-heading hbuilt">
                             块颜色
                         </div>
                         <div class="panel-body float-e-margins">
                             <div class="row">
-                                <div class="col-xs-2">
+                                <div class="col-sm-2 mg-bt">
                                     <div class="hpanel xfd-bg-primary">
                                         <div class="panel-body">
                                             <div class="text-center">
@@ -99,7 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-2">
+                                <div class="col-sm-2 mg-bt">
                                     <div class="hpanel xfd-bg-success">
                                         <div class="panel-body">
                                             <div class="text-center">
@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-2">
+                                <div class="col-sm-2 mg-bt">
                                     <div class="hpanel xfd-bg-info">
                                         <div class="panel-body">
                                             <div class="text-center">
@@ -129,7 +129,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-2">
+                                <div class="col-sm-2 mg-bt">
                                     <div class="hpanel xfd-bg-warning">
                                         <div class="panel-body">
                                             <div class="text-center">
@@ -144,7 +144,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-2">
+                                <div class="col-sm-2 mg-bt">
                                     <div class="hpanel xfd-bg-danger">
                                         <div class="panel-body">
                                             <div class="text-center">
@@ -159,7 +159,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-2">
+                                <div class="col-sm-2">
                                     <div class="hpanel xfd-bg-gray xfd-text-white">
                                         <div class="panel-body">
                                             <div class="text-center">
@@ -182,8 +182,8 @@
     </div>
 <script>
     $('#text').on('click',function(){
-
-        //self.parent.LayoutController.iframeController(2,'button.html','按钮组件');
+        console.log('触发')
+        self.parent.LayoutController.iframeController(3,'button.html','按钮组件');
     })
     //console.log();
 </script>

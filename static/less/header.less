@@ -1,10 +1,25 @@
 #logo.light-version{
     float: left;
+    width: 182px;
+    height: 70px;
+    transition: all 0.4s ease 0s;
+}
+.page-small #logo.light-version{
+  margin-left: -182px;
 }
 #logo.light-version img {
     width: 130px;
     margin-left: 31px;
     margin-top: 14px;
+}
+.header-link{
+    float: left;
+    color: #fff;
+    padding: 23px 16px;
+    cursor: pointer;
+}
+.header-link > .fa{
+  font-size: 22px;
 }
 @media (min-width: 768px){
     .navbar-right {
@@ -21,9 +36,16 @@
   font-size: 12px;
   color: #fff;
 }
+.navbar-nav > li:hover,
+.navbar-nav > li > a:hover{
+  background: #0085C9;
+}
+.navbar-nav > li:last-child{
+  margin-left: 32px;
+}
 .navbar-nav > li:last-child > a {
-  padding-right: 35px;
-  margin-left: 48px;
+  padding: 25px 32px;
+  
 }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus,
@@ -66,3 +88,65 @@ span.cross:hover i {
 span.cross:hover i:after {
   background: #ff7570;
 }
+.form-horizontal .text-left {
+    text-align: left;
+    font-weight: inherit;
+}
+.header-btn-more{
+  display: none;
+}
+.header-btn-more > a{
+    float: right;
+    color: #fff;
+    padding: 21px 16px;
+}
+.header-btn-more > a .glyphicon{
+  font-size: 22px;
+}
+.header-btn-more > a.on,
+.header-btn-more > a:hover{
+    background: #0085C9;
+}
+@media(max-width:768px){
+  .xfd-nav-menu{
+    float: none !important;
+  }
+  .xfd-top-nav{
+    position: absolute;
+    top: 70px;
+    background: #0091DB;
+    z-index: 1111;
+    width: 100%;
+    margin: 0;
+  }
+  .navbar-nav{
+    margin: 0;
+  }
+  .xfd-nav-menu > .navbar-nav{
+    height: 0px;
+    overflow: hidden;
+    transition: all 0.4s ease 0s;
+  }
+  .xfd-nav-user{
+    width: 152px;
+    float: right;
+  }
+  .xfd-nav-user li{
+    z-index: 112;
+  }
+  .xfd-nav-user ul > li > .dropdown-menu{
+    background: #fff !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175) !important;
+    border: 1px solid rgba(0, 0, 0, .15) !important;
+    margin-top: 2px !important;
+  }
+  .header-btn-more{
+    display: block;
+  }
+  .xfd-nav-menu.open > .navbar-nav{
+  height: 272px;
+  
+}
+}
+
+
