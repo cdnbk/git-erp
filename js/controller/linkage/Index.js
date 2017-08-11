@@ -1,6 +1,5 @@
-﻿define(['linkage', 'defaults-zh_CN'],
+﻿define(['linkage', 'defaults-zh_CN','utils/app'],
     function () {
-
         function init(select$, render) {
 
             select$.data("data-nms-init", true);
@@ -18,22 +17,35 @@
             const values = select$.data("data-nms-values") || "";
             const url = urltpl.replace(/\$values/ig, encodeURIComponent(values));
             console.log(url);
+            var userInfo = {};
+            //$.server.res('cwgjerp_3.0.0_queryallopencity', userInfo, 'C_AES', 'post').then(function (data) {
+            //    console.log(1234);
+            //    if (data.r_code == 900 || data.r_code == 901) {
+            //        $.dialog.alert("当前页面已过期，请重新登录");
+            //        window.location.href = "login";
+            //    }
+            //    if (data.r_code == 0) {
+            //        console.log(data);
+            //    }
+            //    else {
+            //        $.dialog.alert(data.r_msg);
+            //    }
+            //});
             function ajax(url, callback) {
                 callback({
                     data: [
-                        { value: "1", text: "a" },
-                        { value: "2", text: "b" },
-                        { value: "3", text: "c" }
-                    ].filter(e => !values || e.value == values)
+                        { cityId: "1", cityName: "a" },
+                        { cityId: "2", cityName: "b" },
+                        { cityId: "3", cityName: "c" }
+                    ].filter(e => !values || e.cityId == values)
                 });
             };
-
             ajax(url, data => {
                 const options = select$.get(0).options;
                 options.length = 0;
                 for (let i = 0; i < data.data.length; i++) {
                     const e = data.data[i];
-                    options.add(new Option(e.text, e.value));
+                    options.add(new Option(e.cityName, e.cityId));
                 }
 
                 select$.attr("multiple", "multiple");
@@ -42,7 +54,7 @@
                 render && select$.selectpicker('show');
             });
         }
-
+        //初始化函数
         $(() => {
             $("[data-nms]").each((i, e) => {
                 const select$ = $(e);

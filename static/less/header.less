@@ -92,6 +92,8 @@ span.cross:hover i:after {
     text-align: left;
     font-weight: inherit;
 }
+
+//响应式顶部
 .header-btn-more{
   display: none;
 }
@@ -107,14 +109,17 @@ span.cross:hover i:after {
 .header-btn-more > a:hover{
     background: #0085C9;
 }
-@media(max-width:768px){
+.xfd-nav-menu > .navbar-nav > li .iconfont{
+  display: none;
+}
+@media screen and (max-width:768px){
   .xfd-nav-menu{
     float: none !important;
   }
   .xfd-top-nav{
     position: absolute;
     top: 70px;
-    background: #0091DB;
+    background: #FAFBFC;
     z-index: 1111;
     width: 100%;
     margin: 0;
@@ -122,10 +127,27 @@ span.cross:hover i:after {
   .navbar-nav{
     margin: 0;
   }
+  .xfd-nav-menu > .navbar-nav > li{
+    height: auto;
+  }
+  .xfd-nav-menu > .navbar-nav > li > a{
+    color: #57636F;
+    height: auto;
+    padding: 16px;
+    font-size: 16px;
+  }
+  .xfd-nav-menu > .navbar-nav > li .iconfont{
+    float: right;
+    color: #D2D7DD;
+    display: block;
+  }
   .xfd-nav-menu > .navbar-nav{
     height: 0px;
     overflow: hidden;
     transition: all 0.4s ease 0s;
+  }
+  .xfd-nav-menu > .navbar-nav > li > a:hover{
+    background: #ffffff;
   }
   .xfd-nav-user{
     width: 152px;
@@ -144,9 +166,20 @@ span.cross:hover i:after {
     display: block;
   }
   .xfd-nav-menu.open > .navbar-nav{
-  height: 272px;
+  height: 240px;
+  padding: 16px 0;
   
 }
+}
+
+.dropdown-menu{
+  padding: 8px 0;
+}
+.navbar-nav .open .dropdown-menu > li > a, .navbar-nav .open .dropdown-menu .dropdown-header {
+    padding: 8px 15px 8px 25px;
+}
+.exit{
+  border-top: 1px solid #D2D7DD;
 }
 
 

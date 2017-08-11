@@ -49,7 +49,7 @@
                         domStr.push('</ul>');
                         domStr.push('</li>');
                     } else {
-                        domStr.push('<li><a href="' + item.url + '" data-menukey="' + item.menuId + '">' + item.name + '</a></li>');
+                        domStr.push('<li><a href="' + item.url + '" data-menukey="' + item.menuId + '" class="single-menu">' + item.name + '</a></li>');
                     }
                 });
                 menuNode.append(domStr.join(''));
@@ -105,18 +105,27 @@
      * 高亮子菜单样式
      * @param key
      */
-    Layout.prototype.activeMenuLi = function (that) {
+    Layout.prototype.activeMenuLi = function (that,isClose) {
+        var isClose = isClose ? isClose : false;
+       
         var _ul = that.next('ul');
         that.parent().siblings("li").removeClass('active').find('ul').removeClass('on').height(0);
         var _index = that.parent('li').index();
         that.parent().toggleClass('active');
-        if (_ul.hasClass('on')) {
-            _ul.height(0);
-            _ul.removeClass('on');
-        } else {
+        if(!isClose){
+            if (_ul.hasClass('on')) {
+                _ul.height(0);
+                _ul.removeClass('on');
+            } else {
+                _ul.addClass('on');
+                _ul.height(this.height_arr[_index]);
+            }
+        }else{
+            that.parent().addClass('active');
             _ul.addClass('on');
             _ul.height(this.height_arr[_index]);
         }
+
     }
 
     //菜单动画事件
@@ -169,8 +178,20 @@
                 var _index = $(this).data('navkey');
                 _this.switchIframe(_index);
                 _this.activeLi(_index);
-                var activeLiTarget = $("#side-menu").find("li>a[data-menukey=" + _index + "]").parents("ul").prev('a');
-                _this.activeMenuLi(activeLiTarget);
+                var _a = $("#side-menu").find("li>a[data-menukey=" + _index + "]");
+                //非单个
+                if(!_a.attr('class')){
+                    var activeLiTarget = _a.parents("ul").prev('a');
+                    _this.activeMenuLi(activeLiTarget,true);
+                    $("#side-menu").children('li.child-active').removeClass('child-active');
+                }else{
+                    _a.parent('li.child-active').siblings('.child-active').removeClass('child-active');
+                    $('#side-menu').find('li.active').removeClass('active')
+                        .find('.nav-second-level.on').removeClass('on')
+                        .height(0).find('li')
+                        .removeClass('child-active');
+                }
+
             }
         })
         //删除功能
@@ -264,11 +285,12 @@
             /**
              * 处理不含有子菜单
              */
-            if($(this).next('ul').length<=0){
+            if($(this).hasClass('single-menu')){
+                $('#side-menu').find('li.child-active').removeClass('child-active');
                 $('#side-menu').find('li.active').removeClass('active')
                     .find('.nav-second-level.on').removeClass('on')
                     .height(0).find('li')
-                    .removeClass('.child-active');
+                    .removeClass('child-active');
             }else{
                 $('#side-menu').find('.child-active').removeClass('child-active');
             }

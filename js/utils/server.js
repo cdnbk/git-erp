@@ -59,12 +59,12 @@
             } else if (encryptType === 'G_AES') {
                 content = AESEncrypt(JSON.stringify(param), encryptKey);
             } else if (encryptType === 'C_AES') {
-                cookieTK = Cookies.get('tk');
-                if (typeof(cookieTK) === "undefined") {
-                    reLogin(dtd);
-                    return dtd.promise();
-                }
-                content = AESEncrypt(JSON.stringify(param), cookieTK.substring(0, 16));
+                //cookieTK = Cookies.get('tk');
+                //if (typeof(cookieTK) === "undefined") {
+                //    reLogin(dtd);
+                //    return dtd.promise();
+                //}
+                //content = AESEncrypt(JSON.stringify(param), cookieTK.substring(0, 16));
             }
             var contentBody = {
                 service_id: service_id,

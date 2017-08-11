@@ -1,11 +1,11 @@
 /* Buttons */
 .@{css-prefix}btn {
     display: inline-block;
-    padding: 6px 32px;
+    padding: 10px 32px;
     margin-bottom: 0;
     font-size: 12px;
     font-weight: normal;
-    line-height: 1.42857143;
+    line-height: 12px;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -20,8 +20,12 @@
     border: 1px solid transparent;
     border-radius: 2px;
 }
+.@{css-prefix}btn:not(:last-child){
+  margin-right: 16px;
+}
 .@{css-prefix}btn-outline{
-  padding: 6px 16px;
+  padding: 9px 16px;
+  line-height: 12px;
 }
 .float-e-margins .@{css-prefix}btn {
   margin-bottom: 5px;
@@ -352,21 +356,33 @@ fieldset[disabled] .@{css-prefix}btn-link.active {
   font-size: 14px;
   padding: 11px 16px;
   line-height: 14px;
+  min-width: 68px;
+  text-align: justify;
+  text-align-last: justify;
 }
 .@{css-prefix}btn-md{
   font-size: 12px;
   padding: 9px 16px;
   line-height: 12px;
+  min-width: 62px;
+  text-align: justify;
+  text-align-last: justify;
 }
 .@{css-prefix}btn-sm{
   font-size: 11px;
   padding: 7px 16px;
   line-height: 11px;
+  min-width: 60px;
+  text-align: justify;
+  text-align-last: justify;
 }
 .@{css-prefix}btn-xs {
   font-size: 10px;
   padding: 6px 16px;
   line-height: 10px;
+  min-width: 58px;
+  text-align: justify;
+  text-align-last: justify;
 }
 .@{css-prefix}btn-circle {
   width: 30px;
@@ -407,7 +423,7 @@ fieldset[disabled] .@{css-prefix}btn-link.active {
 /*带有icon的按钮*/
 .@{css-prefix}btn-icon{
     font-size: 12px;
-    padding: 3px 16px;
+    padding: 9px 16px;
 }
 .@{css-prefix}btn-icon > .iconfont{
    vertical-align: -2px;

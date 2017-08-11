@@ -45,7 +45,7 @@
 .@{css-prefix}table > tfoot > tr > td {
     padding: 14px;
     line-height: 1.42857143;
-    vertical-align: top;
+    vertical-align: middle;
     border-top: 1px solid #E4E9ED;
     font-size: 12px;
     text-align: center;
@@ -65,7 +65,10 @@
     min-height: .01%;
     overflow-x: auto;
 }
-
+.@{css-prefix}table-border{
+    position: relative; 
+    border:1px solid #E4E9ED;
+}
 @media screen and (max-width: 767px){
     .@{css-prefix}table-responsive>.table>tbody>tr>td, 
     .@{css-prefix}table-responsive>.table>tbody>tr>th, 
@@ -80,6 +83,9 @@
 
 .@{css-prefix}width-auto{
     min-width: 1024px;
+}
+.@{css-prefix}width-check{
+    width: 40px;
 }
 
 .@{css-prefix}body-content::-webkit-scrollbar{

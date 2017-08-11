@@ -1,18 +1,27 @@
 /**
  * Created by apple on 2017/4/28.
  */
-require(['utils/layout', 'utils/app', 'utils/dialog','common/header'], function () {
-    var mainApi = {
-        fw_userLogout: function () {
-            //退出接口
-            return $.server.res('fw_userLogout');
-        }
-    };
+define(['utils/layout', 'utils/app', 'common/header'], function () {
     function exit_clean() {
         if (window.localStorage) {
             localStorage.clear();
             Cookies.remove('tk');
             window.location.href = '/index.html';
+        }
+    }
+
+     /* 菜单id */
+    var menuId = function(str){
+        var menuData = JSON.parse(window.localStorage.menuLists);
+        // console.log(menuData.length);
+        for(var i=0,len = menuData.length;i<len;i++){
+            var _url =  document.createElement('a');
+            _url.href = menuData[i].url;
+            var strUrl = _url.pathname.replace(/^([^\/])/,'/$1').split("/");
+            var strLast = strUrl[strUrl.length-1];
+            if(strLast===str){
+                return menuData[i].menuId;
+            }
         }
     }
 
@@ -22,8 +31,8 @@ require(['utils/layout', 'utils/app', 'utils/dialog','common/header'], function 
                 actions: [
                     {
                         label: '确定', class: 'primary', onClick: function () {
-                            exit_clean();
-                        }
+                        exit_clean();
+                    }
                     }
                 ]
             })
@@ -33,150 +42,11 @@ require(['utils/layout', 'utils/app', 'utils/dialog','common/header'], function 
         $('#hide-iframe').attr("src", globalConfig.basePath + 'loginData?tk=' + Cookies.get('tk'));
     }
     $.Layout.init();
-    //修改密码弹窗
-    $(".updatePwd").on("click", function () {
-        console.log('11')
-        $.dialog.info($("#update-pwd"), {
-            actions: [
-                {
-                    label: '取消', class: 'default', onClick: function () {
-                        // alert('我是按钮1')
-                    }
-                },
-                {
-                    label: '保存', class: 'primary', onClick: function () {
-                        $.dialog.alert('密码错误!');
-                    }
-                }
-            ]
-        }, "修改密码");
-    });
-    //修改密码
-    // $("#updatePassWord").click(function () {
-    //     var oldPassWord = $("#oldPassWord").val();
-    //     var newPassWord = $("#newPassWord").val();
-    //     var resetPassWord = $("#resetPassWord").val();
-    //     if (newPassWord == "" || resetPassWord == "") {
-    //         alert("密码不能为空！！！");
-    //     }
-    //     if (newPassWord == resetPassWord) {
-    //         var action = new CAESAction("fw_resetPassword");
-    //         action.putData({
-    //             "oldPassword": oldPassWord,
-    //             "password": newPassWord
-    //         });
-    //         action.post({
-    //             success: function (data) {
-    //                 if (data.r_code == 900 || data.r_code == 901) {
-    //                     alert("当前页面已过期，请重新登录");
-    //                     window.location.href = "login";
-    //                 }
-    //                 if (data.r_code == 0) {
-    //                     alert("密码修改成功");
-    //                     location.replace(location.href);
-    //                 }
-    //                 else {
-    //                     alert(data.r_msg);
-    //                 }
-    //             }
-    //         });
-    //     }
-    // });
-    //退出方法
-    //修改邮箱弹窗
-    $("#editEmail").on("click", function () {
-        $.dialog.info($("#update-email"), {
-            actions: [
-                {
-                    label: '取消', class: 'default', onClick: function () {
-                        // alert('我是按钮1')
-                    }
-                },
-                {
-                    label: '保存', class: 'primary', onClick: function () {
-                        var newEmail = $("#updateEmail").val();
-                        if (newEmail == "") {
-                            $.dialog.alert("邮箱不能为空！！！");
-                        }
-                        else {
-                            var userInfo = {
-                                "newEmail": newEmail,
-                            };
-                            $.server.res('fw_queryUserMailAndPhone', userInfo, 'C_AES').then(function (data) {
-                                if (data.r_code == 900 || data.r_code == 901) {
-                                    $.dialog.alert("当前页面已过期，请重新登录");
-                                    window.location.href = "login";
-                                }
-                                if (data.r_code == 0) {
-                                    $.dialog.alert("邮箱修改成功");
-                                    setTimeout(function () {
-                                        location.replace(location.href);
-                                    }, 1000);
-                                }
-                                else {
-                                    $.dialog.alert(data.r_msg);
-                                }
-                            });
-                        }
-                    }
-                }
-            ]
-        }, "修改邮箱地址");
-    });
-    //修改手机弹窗
-    $("#editMobile").on("click", function () {
-        $.dialog.info($("#update-mobile"), {
-            actions: [
-                {
-                    label: '取消', class: 'default', onClick: function () {
-                        // alert('我是按钮1')
-                    }
-                },
-                {
-                    label: '保存', class: 'primary', onClick: function () {
-                        var newEmail = $("#updateEmail").val();
-                        if (newEmail == "") {
-                            $.dialog.alert("邮箱不能为空！！！");
-                        }
-                        else {
-                            var userInfo = {
-                                "newEmail": newEmail,
-                            };
-                            $.server.res('fw_queryUserMailAndPhone', userInfo, 'C_AES').then(function (data) {
-                                if (data.r_code == 900 || data.r_code == 901) {
-                                    $.dialog.alert("当前页面已过期，请重新登录");
-                                    window.location.href = "login";
-                                }
-                                if (data.r_code == 0) {
-                                    $.dialog.alert("邮箱修改成功");
-                                    setTimeout(function () {
-                                        location.replace(location.href);
-                                    }, 1000);
-                                }
-                                else {
-                                    $.dialog.alert(data.r_msg);
-                                }
-                            });
-                        }
-                    }
-                }
-            ]
-        }, "修改手机号");
-    });
+    /**
+     * 退出业务逻辑功能
+     */
     $('.exit').on('click', function () {
-        mainApi.fw_userLogout().then(function (data) {
-            if (data.r_code === 0) {
-                $.dialog.info('退出成功', {
-                    actions: [
-                        {
-                            label: '确定', class: 'primary', onClick: function () {
-                                exit_clean();
-                            }
-                        }
-                    ]
-                })
-            }
-        })
+        exit_clean();
     })
     //全局监听事件做派发处理
     window.addEventListener('message', function (e) {
@@ -186,8 +56,8 @@ require(['utils/layout', 'utils/app', 'utils/dialog','common/header'], function 
                     actions: [
                         {
                             label: '确定', class: 'primary', onClick: function () {
-                                exit_clean()
-                            }
+                            exit_clean()
+                        }
                         }
                     ]
                 })
@@ -199,6 +69,18 @@ require(['utils/layout', 'utils/app', 'utils/dialog','common/header'], function 
                  */
                 var content = e.data.content;
                 self.parent.LayoutController.iframeController(content.key, content.url, content.info);
+                break;
+            case 'getMenuId':
+                var content = e.data.content;
+                console.log(menuId(content.str))
+                var activeIframe_key = $('#navPills').children('.active').data('navkey');
+                $('iframe[name="iframe'+(activeIframe_key)+'"]')[0].contentWindow.postMessage({
+                    content: {
+                        type:'getMenuId',
+                        menuId:menuId(content.str)
+                    }
+                }, '*');
+                // return user.menuId(content.str);
                 break;
         }
     }, false);
@@ -214,4 +96,9 @@ require(['utils/layout', 'utils/app', 'utils/dialog','common/header'], function 
                 info:'按钮组件'
              }
          },'*')
+
+
+ window.addEventListener('message',function(event) {
+        console.log(event)
+},false);
  */

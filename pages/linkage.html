@@ -6,15 +6,11 @@
     <link href="../js/lib/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
 </head>
 <body>
-    <select id="citySelect" data-nms="true" data-live-search="true" data-actions-box="true" data-style="btn-primary" title="请选择城市" data-nms-src="city.json?filter=$values" data-nms-target="#areaSelect">
+    <select id="citySelect" data-nms="true" data-nms-src="city.json?filter=$values" data-nms-target="#saleSelect" data-live-search="true" data-actions-box="true" title="请选择城市">
         <option>请选择城市</option>
     </select>
-    <select id="areaSelect" data-nms="true" data-live-search="true" data-actions-box="true" data-style="btn-primary" title="请选择城市" data-nms-src="area.json?filter=$values">
-        <option>Mustard</option>
-        <option>Ketchup</option>
-        <option data-icon="glyphicon-heart">Ketchup</option>
-        <option data-content="<span class='label label-success'>Relish</span>">Relish</option>
-        <option>Relish</option>
+    <select id="saleSelect" data-nms="true" data-nms-src="sale.json?filter=$values" data-live-search="true" data-actions-box="true" title="请选择销售员">
+        <option>请选择销售员</option>
     </select>
     <script type="text/javascript">
         require(['controller/linkage/Index'], function (index) {

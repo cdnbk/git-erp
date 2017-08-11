@@ -15,11 +15,12 @@
 
     Dialog.prototype.Tel = function(tips,actions,title){
         var types = tips[0].nodeType==1&&typeof tips != 'string';
+
         var tel_id = "dialog-" + new Date().getTime();
         this.dia_dom = "dia-dom-" + new Date().getTime();
         var tel = [];
         tel.push('<div class="xfd-modal-dialog xfd-box showSweetAlert visible" id="'+(this.dia_dom)+'">');
-            tel.push('<div class="xfd-modal-content">');
+            tel.push('<div class="xfd-modal-content '+(types?'content-title':'')+'">');
                 tel.push('<div type="confirm" class="xfd-dialog">');
                     tel.push('<div class="xfd-modal-header"><h4 class="xfd-modal-title">'+(title?title:'')+'</h4></div>');
                     tel.push('<div class="xfd-modal-body">');
@@ -78,7 +79,7 @@
 
     Dialog.prototype.buttonHtml = function (actions){
         return actions.map(function(v,i){
-            return '<button type="button" class="xfd-btn-dialog xfd-btn xfd-btn-sm xfd-btn-'+(v.class)+'">'+(v.label)+'</button>'
+            return '<button type="button" class="xfd-btn-dialog xfd-btn xfd-btn-md xfd-btn-'+(v.class)+'">'+(v.label)+'</button>'
         }).join('');
     }
 

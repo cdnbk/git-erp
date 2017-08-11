@@ -8,7 +8,7 @@
     foo/**而将匹配foo/目录以及其子目录中所有以.js结尾的文件。
 */
 fis.set('project.ignore', [
-  'vendor/**',
+    'vendor/**',
     'node_modules/**'
 ]);
 // npm install -g fis3-parser-less-2.x 启动构建less

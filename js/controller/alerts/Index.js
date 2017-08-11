@@ -1,5 +1,8 @@
-define(['vue','utils/dialog','utils/tips','utils/toast'],
-    function (Vue) {
+define(['utils/app','highlight.pack'],
+    function () {
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
         //$.toast.open('数据加载中');
         function Tips (icion){
             $.Tips.info({

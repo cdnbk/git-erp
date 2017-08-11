@@ -29,6 +29,7 @@
         $(this.defaultProps.dom_box).on('click', '.previous', function () {
             $this.defaultProps.defaultCurrent -= 1;
             $this.callback();
+            $this.init();
         })
     };
 
@@ -38,6 +39,7 @@
         $('#' + this.pagination_id).on('click', '.next', function () {
             $this.defaultProps.defaultCurrent += 1;
             $this.callback();
+            $this.init();
         })
     };
     //回调函数
@@ -52,6 +54,7 @@
         $('#' + this.pagination_id).on('click', '.page-prev', function () {
             $this.defaultProps.defaultCurrent = Math.max(1, $this.defaultProps.defaultCurrent - 5)
             $this.callback();
+            $this.init();
         })
     };
 
@@ -67,6 +70,7 @@
             var calcPage = Math.floor(($this.defaultProps.total - 1) / 10) + 1;
             $this.defaultProps.defaultCurrent = Math.min(calcPage, $this.defaultProps.defaultCurrent + 5);
             $this.callback();
+            $this.init();
         })
     };
 
