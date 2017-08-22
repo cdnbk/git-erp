@@ -43,4 +43,4 @@ requirejs.config({
             deps: ['linkage']
         }
     }
-});
+}); 
