@@ -1,0 +1,68 @@
+.@{css-prefix}upload{
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #D2D7DD;
+    border-radius: 4px;
+    height: 180px;
+    text-align: center;
+    position: relative;
+}
+.@{css-prefix}upload-img{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    font-size: 12px;
+    color: #57636F;
+}
+.@{css-prefix}upload-img .iconfont{
+    color: #D2D7DD;
+    font-size: 67px;
+}
+.@{css-prefix}upload-img div{
+    margin-top: -10px;
+}
+.@{css-prefix}upload-img div a{
+    text-decoration: none;
+    color: #0091DB;
+}
+
+.@{css-prefix}upload .@{css-prefix}upload-hover{
+    background: rgba(83,201,215,0.05);
+    color: #53C9D7;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.1s ease 0s;
+}
+
+.@{css-prefix}upload .@{css-prefix}upload-hover > div{
+    font-size: 12px;
+    margin-top: 80px;
+}
+
+.@{css-prefix}upload:hover .@{css-prefix}upload-hover{
+    border: 1px dashed #53C9D7;
+    height: 180px;
+}
+.@{css-prefix}upload:hover{
+    border: 0;
+}
+.@{css-prefix}upload:hover .@{css-prefix}upload-img{
+    display: none;
+}
+
+.@{css-prefix}upload .@{css-prefix}upload-progress{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    height: 6px;
+    width: 100%;
+    padding: 0 59px;
+    display: none;
+}

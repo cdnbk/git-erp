@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>级联</title>
+    #parse("pages/common_pages/pages_header.html")
+    <link href="../js/lib/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="/static/styles/module/linkage.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading hbuilt">
+                        联级组件
+                    </div>
+                    <div class="panel-body float-e-margins">
+                        <div class="btn-linkage">
+                            <select id="citySelect" class="selectpicker xfd-select-linkage" data-nms="true" data-nms-src="city.json?filter=$values" data-nms-target="#saleSelect" title="请选择...">
+                            </select>
+                            <select id="saleSelect" class="selectpicker xfd-select-linkage" data-nms="true" data-nms-src="sale.json?filter=$values" title="请选择...">
+                            </select>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        require(['linkage', 'controller/linkage/index'], function (index) {
+
+        });
+    </script>
+</body>
+</html>
