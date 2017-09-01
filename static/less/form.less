@@ -8,7 +8,9 @@ input,button,textarea,select,optgroup,option{
     font-weight: inherit;
     outline: none!important;
 }
-
+textarea{
+    resize: none;
+}
 :focus {
     outline: 0;
     -webkit-tap-highlight-color: transparent
@@ -18,12 +20,12 @@ input,button,textarea,select,optgroup,option{
     position: relative;
     z-index: 10;
     display: block;
-    width: 52px;
-    height: 32px;
+    width: 40px;
+    height: 22px;
     left: 0;
-    border: 1px solid #dfdfdf;
+    border: 1px solid #D2D7DD;
     border-radius: 16px;
-    background-color: #dfdfdf;
+    background-color: #D2D7DD;
     -webkit-appearance: none;
     -moz-appearance: none;
     outline: none!important;
@@ -40,7 +42,7 @@ input,button,textarea,select,optgroup,option{
     position: absolute;
     top: 0;
     left: 0;
-    height: 30px;
+    height: 20px;
     border-radius: 15px;
     -webkit-transition: -webkit-transform .3s;
     transition: -webkit-transform .3s;
@@ -49,14 +51,14 @@ input,button,textarea,select,optgroup,option{
 }
 
 .@{css-prefix}form-switch:after {
-    width: 30px;
+    width: 20px;
     background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,.4)
+    box-shadow: 0 0px 2px rgba(0,0,0,.4)
 }
 
 .@{css-prefix}form-switch:checked:after {
-    -webkit-transform: translateX(20px);
-    transform: translateX(20px)
+    -webkit-transform: translateX(18px);
+    transform: translateX(18px)
 }
 
 //复选框
@@ -221,6 +223,7 @@ input,button,textarea,select,optgroup,option{
     box-shadow:none;
     border: 1px solid #E4E9ED;
     height: 30px;
+    padding: 6px 8px;
 }
 .input-daterange .input-group-addon{
     background-color: #ffffff;
@@ -233,4 +236,31 @@ input,button,textarea,select,optgroup,option{
 }
 .xfd-input-group-white .input-group-addon{
     background: #fff;
+}
+select {
+    border-radius: 2px;
+}
+
+::-webkit-input-placeholder{
+    color: #D4DCE3;
+    font-size: 12px;
+}
+:-moz-placeholder{
+    color: #D4DCE3;
+    font-size: 12px;
+} 
+::-moz-placeholder{
+    color: #D4DCE3;
+    font-size: 12px;
+} 
+:-ms-input-placeholder{
+    color: #D4DCE3;
+    font-size: 12px;
+}
+.error{
+    border: 1px solid #FF7570;
+}
+.xfd-help-block.text-danger{
+    color: #FF7570;
+    font-size: 10px;
 }

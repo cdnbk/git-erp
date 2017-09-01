@@ -28,22 +28,27 @@
   line-height: 12px;
 }
 .float-e-margins .@{css-prefix}btn {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 .@{css-prefix}btn-primary.@{css-prefix}btn-outline {
   color: #0091DB;
+  border-color: #7FC8ED;
 }
 .@{css-prefix}btn-success.@{css-prefix}btn-outline {
   color: #3EC093;
+  border-color: #9EDFC9;
 }
 .@{css-prefix}btn-info.@{css-prefix}btn-outline {
   color: #53C9D7;
+  border-color: #A9E4EB;
 }
 .@{css-prefix}btn-warning.@{css-prefix}btn-outline {
   color: #F7AD60;
+  border-color: #FBD6AF;
 }
 .@{css-prefix}btn-danger.@{css-prefix}btn-outline {
   color: #FF7570;
+  border-color: #FFBAB7;
 }
 .@{css-prefix}btn-primary.@{css-prefix}btn-outline:hover,
 .@{css-prefix}btn-success.@{css-prefix}btn-outline:hover,
@@ -500,15 +505,68 @@ fieldset[disabled] .@{css-prefix}btn-link.active {
     float: left;
 }
 
-// .@{css-prefix}btn-group .@{css-prefix}btn-white:hover,
-// .@{css-prefix}btn-group .@{css-prefix}btn-white:active{
-//   border: 1px solid #0085C9;
-//   z-index: 11;
-// }
+.btn-group .@{css-prefix}btn-white{
+  font-size: 12px;
+}
+.btn-group .@{css-prefix}btn-white:hover{
+  border: 1px solid #0091DB;
+  color: #0091DB;
+  z-index: 11;
+  }
+.btn-group .@{css-prefix}btn-white:active{
+  border: 1px solid #0085C9;
+  color: #0085C9;
+  z-index: 11;
+}
 
-.@{css-prefix}btn-group .@{css-prefix}btn-white:hover,
-.@{css-prefix}btn-group .@{css-prefix}btn-white:active{
+
+.btn-group .@{css-prefix}btn-white.active{
   background: #0085C9;
   color: #ffffff;
+  border-color: #0085C9;
   z-index: 11;
+}
+
+.btn-group .@{css-prefix}btn-default{
+  border-color: #E4E9ED;
+  background: #ffffff;
+  color: #57636F;
+}
+.btn-group .@{css-prefix}btn-default:hover{
+  border: 1px solid #E4E9ED;
+  background: #FAFBFC;
+  color: #57636F;
+  z-index: 11;
+  }
+.btn-group .@{css-prefix}btn-default:active{
+  border: 1px solid #E4E9ED;
+  background: #FAFBFC;
+  color: #57636F;
+  z-index: 11;
+}
+.btn-group.open .@{css-prefix}btn-default{
+  border: 1px solid #E4E9ED;
+  background: #E4E9ED;
+  color: #57636F;
+}
+
+.dropdown-menu .divider{
+    background-color: #E4E9ED;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+}
+li.next > a,li.previous > a{
+    padding: 4px 25px;
+}
+
+li.tz{
+    padding-left: 32px;
+    color: #57636F;
+    font-size: 12px;
+}
+li.tz > input{
+    width: 60px;
+    display: inline-block;
+    margin-left: 8px;
+    margin-right: 8px;
 }

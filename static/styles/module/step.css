@@ -122,3 +122,14 @@
     height: 50px;
     border-radius: 50px;
 }
+
+@media screen and (max-width:1150px) and (min-width:990px){
+    .xfd-vertical-timeline-textarea{
+        width: 30%;
+    }
+}
+@media screen and (max-width:990px){
+    .xfd-vertical-timeline-textarea{
+        width: auto;
+    }
+}
