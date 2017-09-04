@@ -14,12 +14,15 @@ define(['WebUploader'],
             $info = $statusBar.find( '.info' ),
 
             // 上传按钮
-            $upload = $wrap.find( '.uploadBtn' ),
+            $upload = $wrap.find( '#uploadBtn' ),
 
             // 没选择文件之前的内容。
             $placeHolder = $wrap.find( '.placeholder' ),
 
             $progress = $statusBar.find( '.xfd-progress' ).hide(),
+
+            //控制缩放比例 
+            imgScale = 1,
 
             // 添加的文件数量
             fileCount = 0,
@@ -141,7 +144,8 @@ define(['WebUploader'],
         uploader = WebUploader.create({
             pick: {
                 id: '#filePicker',
-                label: '点击添加'
+                label: '点击添加',
+                style: 'xfd-btn xfd-btn-primary xfd-btn-md'
             },// 选择文件的按钮
             formData: {
                 uid: 123
@@ -194,7 +198,8 @@ define(['WebUploader'],
         // 添加“添加文件”的按钮，
         uploader.addButton({
             id: '#filePicker2',
-            label: '继续添加'
+            label: '继续添加',
+            style: 'xfd-btn xfd-btn-white xfd-btn-md'
         });
 
         uploader.on('ready', function() {
@@ -210,9 +215,9 @@ define(['WebUploader'],
                     '</li>' ),
 
                 $btns = $('<div class="file-panel">' +
-                    '<span class="cancel">删除</span>' +
-                    '<span class="rotateRight">向右旋转</span>' +
-                    '<span class="rotateLeft">向左旋转</span></div>').appendTo( $li ),
+                    '<span class="cancel"><i class="iconfont icon-shanchu"></i></span>' +
+                    '<span class="rotateRight"><i class="iconfont icon-xiangyouxuanzhuan"></i></span>' +
+                    '<span class="rotateLeft"><i class="iconfont icon-xiangzuoxuanzhuan"></i></span></div>').appendTo( $li ),
                 $prgress = $li.find('p.progress span'),
                 $wrap = $li.find( 'p.imgWrap' ),
                 $info = $('<p class="error"></p>'),
@@ -309,59 +314,114 @@ define(['WebUploader'],
             	$(".img_mask").remove();
             	var infoImg =$( '<div class="img_mask">' +
             						'<div class="img_cont">' +
-            							'<div class="img_info">' +
+            							'<div id="img_info" class="img_info">' +
             								'<img src="' + baseUrl + '" />' +
             							'</div>' +
             							'<div class="img_off">' +
 	            							'<i class="icon iconfont icon-guanbi2"></i>' +
 	            						'</div>' +
             						'</div>' +
-            					'</div>').appendTo("body");
+                                '</div>').appendTo("body");
+                //监听鼠标滚动事件
+                if (document.addEventListener) {
+            		document.getElementById("img_info").addEventListener('DOMMouseScroll',scrollFunc,false);//监听滑动事件
+            	}
+            	document.getElementById("img_info").onmousewheel = scrollFunc;
             	var img = new Image();
             	img.src = baseUrl;
             	img.onload = function(){
-            		if(img.height>500&&img.width>800){
-            			$(".img_info img").css({
-            				"top": "0",
-            				"left": "0",
-            				"transform": "translate(0%,0%)",
-						    "-ms-transform": "translate(0%,0%)",
-						    "-webkit-transform": "translate(0%,0%)",
-						    "-o-transform": "translate(0%,0%)",
-						    "-moz-transform": "translate(0%,0%)"
-            				
-            			});
-            		}else if(img.height>500&&img.width<=800){
-            			$(".img_info img").css({
-            				"top": "0",
-            				"left": "50%",
-            				"transform": "translate(-50%,0%)",
-						    "-ms-transform": "translate(-50%,0%)",
-						    "-webkit-transform": "translate(-50%,0%)",
-						    "-o-transform": "translate(-50%,0%)",
-						    "-moz-transform": "translate(-50%,0%)"
-            				
-            			});
-            		}else if(img.height<=500&&img.width>400){
-            			$(".img_info img").css({
-            				"top": "50%",
-            				"left": "0",
-            				"transform": "translate(0%,-50%)",
-						    "-ms-transform": "translate(0%,-50%)",
-						    "-webkit-transform": "translate(0%,-50%)",
-						    "-o-transform": "translate(0%,-50%)",
-						    "-moz-transform": "translate(0%,-50%)"
-            			});
+            		if(img.height>500||img.width>800){
+            			if((img.height/img.width)>(5/8)){
+            				$(".img_info img").css({
+            					"height":"100%",
+            					"width":"auto"
+            				});
+            			}else{
+            				$(".img_info img").css({
+            					"height":"auto",
+            					"width":"100%"
+            				});
+            			}
             		}
             	}
             	$(".img_off").on("click",function(){
 		        	$(".img_mask").remove();
-		        });
+                });
+                        
+                $("#img_info img").mouseover(function(){
+		        	mousemove();
+					mousedown();
+					mouseup();
+					dragstart();
+				});
             });
+            var move = 0;
+            var X1;
+            var Y1;
+            function mousemove(){
+            	$(".img_mask").on("mousemove",function(){
+            		if(move) {
+	            		var $img = $("#img_info img");
+		            	var Tx=(window.event.x - X1);
+		            	var Ty=(window.event.y - Y1);
+		            	$(".img_info img").css({
+							"top":Ty+"px",
+							"left":Tx+'px'
+						});
+					}
+            	});
+            }
+            function mousedown(){
+            	$("#img_info img").on("mousedown",function(){
+            		X1 = window.event.x-parseInt($(this).css('left'));
+					Y1 = window.event.y-parseInt($(this).css('top'));
+					move = 1;
+            	});
+				
+            }
+            function mouseup(){
+            	$(".img_mask").on("mouseup",function(){
+					move = 0;
+            	});
+            }
+            function dragstart() {
+            	$("#img_info img").on("dragstart",function(){
+					window.event.returnValue = false;
+            	});
+            }
             
+            //鼠标滚动事件
+            var scrollFunc=function(e){
+				var direct = 0;
+				e = e || window.event;
+				
+				if(e.wheelDelta) { //IE/Opera/Chrome
+					if(e.wheelDelta>0){
+						//向上滚动
+						imgScale+=0.2;
+						var imgTransform = "translate(-50%,-50%) scale(" + imgScale + "," + imgScale + ")";
+						$("#img_info img").css({
+							"transform":imgTransform,
+							"opacity":"1"
+						});
+					}else{
+						//向下滚动
+						if(imgScale>0.5){
+							imgScale-=0.2;
+							var imgTransform = "translate(-50%,-50%) scale(" + imgScale + "," + imgScale + ")";
+							$("#img_info img").css({
+								"transform":imgTransform,
+								"opacity":"1"
+							});
+						}else{
+							//alert("已经到最小了");
+						}
+					}
+				} else if(e.detail) { //Firefox
+					alert(e.detail);
+				}
+            }
             
-       
-
             $btns.on( 'click', 'span', function() {
                 var index = $(this).index(),
                     deg;
@@ -621,16 +681,13 @@ define(['WebUploader'],
         } );
 
         $info.on( 'click', '.ignore', function() {
-        	$queue.find(".state-error").each(function(){
-        		delete percentages[ $(this).attr("id") ];
-	            updateTotalProgress();
-	            $(this).off().find('.file-panel').off().end().remove();
-        	});
-//      	uploader.removeFile( file );
-//          alert( 'todo' );
+        	var arrFile = uploader.getFiles();
+        	for(var i = 0,len = arrFile.length;i<len;i++){
+        		if(arrFile[i].getStatus()==="error"){
+        			uploader.removeFile(arrFile[i]);
+        		}
+        	}
         } );
-        
-        
 
         $upload.addClass( 'state-' + state );
         updateTotalProgress();

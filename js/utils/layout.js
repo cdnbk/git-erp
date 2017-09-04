@@ -410,7 +410,7 @@
         $('.xfd-sweet-overlay').remove();
     }
 
-    //hash
+    //小路由
     Layout.prototype.hashChange = function () {
         var _this = this;
         var location = window.location,
@@ -424,8 +424,12 @@
             var _index = newHash.replace('#menukey=', '');
             // 如果hash发生了变化,且绑定了处理函数...
             if (newHash != oldHash) {
-                _this.switchIframe(_index);
-
+                if ($.inArray(parseInt(_index), _this.iframe_key) == -1) {
+                    return false;
+                } else {
+                    _this.switchIframe(_index);
+                    _this.activeLi(_index);
+                };               
                 oldURL = newURL;
                 oldHash = newHash;
             }
